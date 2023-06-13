@@ -2,11 +2,11 @@ import './Formulario.css'
 import CampoTexto from '../CampoTexto'
 import ListaSuspensa from '../ListaSuspensa'
 import Botao from '../Botao'
+import { useState } from 'react'
 
-function Formulario (){
+function Formulario(props) {
 
     const setores = [
-        '',
         'Mecânica',
         'Logística',
         'Elétrica',
@@ -14,15 +14,53 @@ function Formulario (){
         'Alimentos',
         'Gestão'
     ]
-    return(
+    function aoSubmeter(event) {
+        event.preventDefault()
+        props.aoCadastrarProfessor({
+            nome,
+            especialidade,
+            imagem,
+            area,
+        })
+    }
+
+    const [nome, setNome] = useState("")
+    const [especialidade, setEspecialidade] = useState("")
+    const [imagem, setImagem] = useState("")
+    const [area, setArea] = useState("")
+
+    return (
         <section className='form'>
-            <form>
+            <form onSubmit={aoSubmeter}>
                 <h2>Preencha os dados para cadastrar </h2>
-                <CampoTexto label="Nome Professor" placeholder="Insira seu nome" obrigatorio={true}/>
-                <CampoTexto label="Especialidade" placeholder="Insira uma especialidade" obrigatorio={true}/>
-                <CampoTexto label="Imagem" placeholder="Carregue uma imagem"/>
-                <ListaSuspensa label="Área" areas={setores} obrigatorio={true}/>
-                <Botao texto="Cadastrar"/>              
+                <CampoTexto
+                    label="Nome Professor"
+                    placeholder="Insira seu nome"
+                    obrigatorio={true}
+                    valor={nome}
+                    aoAlterar={valor => setNome(valor)}
+                />
+                <CampoTexto
+                    label="Especialidade"
+                    placeholder="Insira uma especialidade"
+                    obrigatorio={true}
+                    valor={especialidade}
+                    aoAlterar={valor => setEspecialidade(valor)}
+                />
+                <CampoTexto
+                    label="Imagem"
+                    placeholder="Carregue uma imagem"
+                    valor={imagem}
+                    aoAlterar={valor => setImagem(valor)}
+                />
+                <ListaSuspensa
+                    label="Área"
+                    opcoes={setores}
+                    obrigatorio={true}
+                    valor={area}
+                    aoAlterar={valor => setArea(valor)}
+                />
+                <Botao texto="Cadastrar" />
             </form>
         </section>
     )

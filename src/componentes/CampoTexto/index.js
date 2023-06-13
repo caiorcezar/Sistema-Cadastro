@@ -1,17 +1,28 @@
+import { useState } from 'react'
 import './CampoTexto.css'
 
 function CampoTexto (props) {
     
-    let valor = ""
-    const digitado = (evento) => {
+   /*  let valor = "" */
+
+   /* const [valor, setValor] = useState("") */
+
+   /*  const digitado = (evento) => {
         valor = evento.target.value
         console.log(valor)
+    } */
+
+   /*  props.aoAlterar(digitado.target.value) */
+
+    function digitado (event){
+        props.aoAlterar (event.target.value)
+        
     }
     
     return(
         <div className='CampoTexto'>
             <label>{props.label}</label>
-            <input value={valor} onChange={digitado} placeholder={props.placeholder} required={props.obrigatorio}/>
+            <input value={props.valor} onChange={digitado} placeholder={props.placeholder} required={props.obrigatorio}/>
         </div>
     )
 }
