@@ -6,21 +6,21 @@ import { useState } from 'react'
 
 function Formulario(props) {
 
-    const setores = [
+/*     const setores = [
         'Mecânica',
         'Logística',
         'Elétrica',
         'Tecnologia da Informação',
         'Alimentos',
         'Gestão'
-    ]
+    ] */
     function aoSubmeter(event) {
         event.preventDefault()
         props.aoCadastrarProfessor({
-            nome,
-            especialidade,
-            imagem,
-            area,
+            nome: nome,
+            especialidade: especialidade,
+            imagem: imagem,
+            area: area,
         })
     }
 
@@ -55,7 +55,7 @@ function Formulario(props) {
                 />
                 <ListaSuspensa
                     label="Área"
-                    opcoes={setores}
+                    opcoes={props.times}
                     obrigatorio={true}
                     valor={area}
                     aoAlterar={valor => setArea(valor)}
